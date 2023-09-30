@@ -4,10 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="af78a990-0973-498a-90eb-580e1bbbfc8f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/components/HeaderLogo/index.js" afterDir="false" />
+    <list default="true" id="af78a990-0973-498a-90eb-580e1bbbfc8f" name="Changes" comment="create logo">
+      <change afterPath="$PROJECT_DIR$/Navigate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/constant/color/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/components/Icons/FavoritesIcon/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/components/Icons/HomeIcon/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/components/Icons/PlayerIcon/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/screens/TabScreens/FavoritesScreen/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/screens/TabScreens/MainScreen/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/screens/TabScreens/PlayerScreen/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/adaptive-icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HeaderLogo/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/components/HeaderLogo/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
@@ -35,15 +48,23 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/aleksey/80gb/Repo/Learn/radio_mobile",
+    "last_opened_file_path": "/home/aleksey/AndroidStudioProjects/nasporte",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "/home/aleksey/80gb/Repo/Learn/radio_mobile/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/assets" />
+      <recent name="$PROJECT_DIR$/src/ui" />
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -59,11 +80,43 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1695964170869</updated>
-      <workItem from="1695964171917" duration="9470000" />
+      <workItem from="1695964171917" duration="22686000" />
     </task>
+    <task id="LOCAL-00001" summary="create logo">
+      <option name="closed" value="true" />
+      <created>1695982708178</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1695982708178</updated>
+    </task>
+    <task id="LOCAL-00002" summary="create logo">
+      <option name="closed" value="true" />
+      <created>1695982742021</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1695982742021</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="create logo" />
+    <option name="LAST_COMMIT_MESSAGE" value="create logo" />
   </component>
 </project>
