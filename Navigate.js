@@ -9,6 +9,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { HomeIcon } from "./src/ui/components/Icons/HomeIcon";
 import { PlayerIcon } from "./src/ui/components/Icons/PlayerIcon";
 import { FavoritesIcon } from "./src/ui/components/Icons/FavoritesIcon";
+import { COLORS } from "./src/assets/constant/color";
 
 const Tab = createBottomTabNavigator()
 
@@ -18,8 +19,8 @@ export const Navigate = () => {
             <Tab.Navigator
                 initialRouteName="Feed"
                 screenOptions={ {
-                    tabBarActiveTintColor: '#e91e63',
-                    tabBarInactiveTintColor: '#e91',
+                    tabBarActiveTintColor: COLORS.tabsIcon,
+                    tabBarInactiveTintColor: COLORS.tabsIcon,
                     headerShown: false,
                     tabBarStyle: {
                         height: 60,
@@ -31,21 +32,21 @@ export const Navigate = () => {
                     name="Главная"
                     component={ MainScreen }
                     options={ {
-                        tabBarIcon: () => (<HomeIcon/>)
+                        tabBarIcon: ({focused}) => (<HomeIcon focused={focused}/>)
                     } }/>
 
                 <Tab.Screen
                     name="Плеер"
                     component={ PlayerScreen }
                     options={ {
-                        tabBarIcon: () => (<PlayerIcon/>)
+                        tabBarIcon: ({focused}) => (<PlayerIcon focused={focused}/>)
                     } }/>
 
                 <Tab.Screen
                     name="Избранное"
                     component={ FavoritesScreen }
                     options={ {
-                        tabBarIcon: () => (<FavoritesIcon/>)
+                        tabBarIcon: ({focused}) => (<FavoritesIcon focused={focused}/>)
                     } }/>
 
             </Tab.Navigator>

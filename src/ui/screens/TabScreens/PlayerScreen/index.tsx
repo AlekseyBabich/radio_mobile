@@ -14,7 +14,8 @@ export const PlayerScreen = (): JSX.Element => {
 const styles = StyleSheet.create({
     wrapper: {
         flex: 1,
-        backgroundColor: COLORS.primary
+        backgroundColor: COLORS.primary,
+        justifyContent: 'center'
     },
     text: {
         fontSize: 30,

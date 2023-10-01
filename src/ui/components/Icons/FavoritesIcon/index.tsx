@@ -1,12 +1,17 @@
 import React from 'react';
 import { StyleSheet, View } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
+import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import { COLORS } from "../../../../assets/constant/color";
 
-export const FavoritesIcon = () => {
+export const FavoritesIcon = ({focused}) => {
     return (
         <View style={ styles.mainWrapper }>
-            <MaterialIcons name='stars' size={32} color={COLORS.tabsIcon}/>
+            {
+                focused
+                    ? <AntDesign name='star' size={32} color={COLORS.tabsIcon}/>
+                    : <AntDesign name='staro' size={32} color={COLORS.tabsIcon}/>
+            }
+
         </View>
     );
 };
