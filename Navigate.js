@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import { MainScreen } from "./src/ui/screens/TabScreens/MainScreen";
-import { PlayerScreen } from "./src/ui/screens/TabScreens/PlayerScreen";
+import PlayerScreen from "./src/ui/screens/TabScreens/PlayerScreen";
 import { FavoritesScreen } from "./src/ui/screens/TabScreens/FavoritesScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { HomeIcon } from "./src/ui/components/Icons/HomeIcon";

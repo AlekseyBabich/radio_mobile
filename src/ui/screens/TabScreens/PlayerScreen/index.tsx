@@ -1,37 +1,181 @@
-import React from 'react'
-import {SafeAreaView, StyleSheet, Text} from 'react-native'
-import RadioPlayer, {
-    RadioPlayerEvents,
-} from 'react-native-radio-player';
-import { COLORS } from "../../../../assets/constant/color";
-import {useEffect} from "react";
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, Button, DeviceEventEmitter } from 'react-native';
+import Slider from '@react-native-community/slider';
+import Player from 'react-native-audio-streaming-player';
 
+const PLAYBACK_STATE = {
+    STATE_NONE: 0,
+    STATE_STOPPED: 1,
+    STATE_PAUSED: 2,
+    STATE_PLAYING: 3,
+    STATE_FAST_FORWARDING: 4,
+    STATE_REWINDING: 5,
+    STATE_BUFFERING: 6,
+    STATE_ERROR: 7,
+    STATE_CONNECTING: 8,
+    STATE_SKIPPING_TO_PREVIOUS: 9,
+    STATE_SKIPPING_TO_NEXT: 10,
+    STATE_SKIPPING_TO_QUEUE_ITEM: 11,
+};
 
-export const PlayerScreen = (): JSX.Element => {
-    useEffect(() => {
-        RadioPlayer.radioURLWithMetadataSeparator(
-            'https://streams.radio.co/se2fe41ec1/listen',
-            "-"
-        ).then();
-        return () => {
-            RadioPlayer.play().then();
+export default class PlayerScreen extends Component<any, any> {
+    private dragging: boolean;
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            currentTime: 0,
+            index: 0,
+            playlist: null,
+            status: 'STOPPED',
+        };
+
+        this.dragging = false;
+
+        this.onPlaybackActionChanged = this.onPlaybackActionChanged.bind(this);
+        this.onPlaybackPositionUpdated = this.onPlaybackPositionUpdated.bind(this);
+        this.onPlaybackStateChanged = this.onPlaybackStateChanged.bind(this);
+    }
+
+    componentWillMount() {}
+
+    componentDidMount() {
+        DeviceEventEmitter.addListener('onPlaybackPositionUpdated', this.onPlaybackPositionUpdated);
+        DeviceEventEmitter.addListener('onPlaybackStateChanged', this.onPlaybackStateChanged);
+        DeviceEventEmitter.addListener('onPlaybackActionChanged', this.onPlaybackActionChanged);
+    }
+
+    componentWillUnmount() {
+        DeviceEventEmitter.removeAllListeners();
+    }
+
+    onPlaybackPositionUpdated(event) {
+        console.log('Current position: ' + event.currentPosition);
+
+        if (this.state.status === 'PLAYING') {
+            if (!this.dragging) {
+                this.setState({
+                    currentTime: parseInt(event.currentPosition), // convert milisecond to second
+                });
+            }
         }
-    }, [])
-    return (
-        <SafeAreaView style={styles.wrapper}>
-            <Text style={styles.text}>Плеер</Text>
-        </SafeAreaView>
-    )
+    }
+
+    onPlaybackActionChanged(event) {
+        console.log('Current Action: ' + event.action);
+    }
+
+    onPlaybackStateChanged(event) {
+        console.log('PlaybackState: ' + event.state);
+        this.setState({ status: event.state });
+    }
+
+    onPlay() {
+        const { playlist, index } = this.state;
+
+        Player.play('https://stream.bauermedia.sk/rock-hi.mp3', {
+            title: '',
+            artist: '',
+            album_art_uri: '',
+        });
+    }
+
+    onPause() {
+        Player.pause();
+    }
+
+    onStop() {
+        this.setState({
+            currentTime: 0,
+        });
+        Player.stop();
+    }
+
+    onNext() {
+        const { playlist, index } = this.state;
+
+        this.setState(
+            {
+                currentTime: 0,
+                index: (index + 1) % playlist.length,
+            },
+            () => {
+                this.onPlay();
+            },
+        );
+    }
+
+    onPrev() {
+        const { playlist, index } = this.state;
+
+        this.setState(
+            {
+                currentTime: 0,
+                index: index === 0 ? playlist.length - 1 : index,
+            },
+            () => {
+                this.onPlay();
+            },
+        );
+    }
+
+    onSeekTo(pos) {
+        this.dragging = false;
+        Player.seekTo(pos);
+    }
+
+    render() {
+        const { playlist, index, currentTime } = this.state;
+
+        return (
+            <View style={styles.container}>
+                <View
+                    style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-around' }}
+                >
+                    <Button title="Play" onPress={() => this.onPlay()} color="red" />
+                    <Button title="Pause" onPress={() => this.onPause()} color="red" />
+                    <Button title="Stop" onPress={() => this.onStop()} color="red" />
+                </View>
+                <View style={{ alignSelf: 'stretch', marginVertical: 10 }}>
+                    <Slider
+                        value={currentTime}
+                        minimumValue={0}
+                        maximumValue={playlist ? playlist[index].duration : 1}
+                        onValueChange={value => {
+                            this.dragging = true;
+                        }}
+                        step={1}
+                        onSlidingComplete={value => this.onSeekTo(value)}
+                    />
+                    <View
+                        style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 15 }}
+                    >
+                        <Text>{currentTime}</Text>
+                        <Text>{playlist ? playlist[index].duration : 1}</Text>
+                    </View>
+                </View>
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
-    wrapper: {
+    container: {
         flex: 1,
-        backgroundColor: COLORS.primary,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#F5FCFF',
+        borderWidth: 1,
+        borderColor: 'red',
     },
-    text: {
-        fontSize: 30,
+    welcome: {
+        fontSize: 20,
         textAlign: 'center',
+        margin: 10,
     },
-})
+    instructions: {
+        textAlign: 'center',
+        color: '#333333',
+        marginBottom: 5,
+    },
+});
